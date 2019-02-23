@@ -1,6 +1,6 @@
 {
   "name": "busted-typescript-declarations",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "TypeScript definitions for the Busted testing suite",
   "main": "index.js",
   "scripts": {
