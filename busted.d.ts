@@ -34,59 +34,55 @@ declare function mock(toMock: any): any;
 declare type ValueTest<T> = (this: void, value: T, failureDescription?: string) => void;
 declare type BinaryTest<T> = (this: void, expected: T, actual: T, failureDescription?: string) => void;
 
-declare type Assertion = {
-
-    // Value checking
-    is_truthy: ValueTest<any>,
-    is_not_truthy: ValueTest<any>,
-    is_falsy: ValueTest<any>,
-    is_not_falsy: ValueTest<any>,
-    is_nil: ValueTest<undefined | null>,
-    is_not_nil: ValueTest<any>,
-    boolean: ValueTest<boolean>,
-    is_boolean: ValueTest<boolean>,
-    is_not_boolean: ValueTest<any>,
-    number: ValueTest<number>,
-    is_number: ValueTest<number>,
-    is_not_number: ValueTest<any>,
-    string: ValueTest<true>,
-    is_string: ValueTest<true>,
-    is_not_string: ValueTest<any>,
-    is_userdata: ValueTest<any>,
-    is_not_userdata: ValueTest<any>,
-    is_function: ValueTest<Function>,
-    is_not_function: ValueTest<any>,
-    is_thread: ValueTest<any>,
-    is_not_thread: ValueTest<any>,
-    is_table: ValueTest<object>,
-    is_not_table: ValueTest<any>,
-    True: ValueTest<true>,
-    is_true: ValueTest<true>,
-    is_not_true: ValueTest<any>,
-    False: ValueTest<false>,
-    is_false: ValueTest<false>,
-    is_not_false: ValueTest<any>,
-    equal: BinaryTest<any>,
-    equals: BinaryTest<any>,
+declare namespace assert {
+    export const is_truthy: ValueTest<any>;
+    export const is_not_truthy: ValueTest<any>;
+    export const is_falsy: ValueTest<any>;
+    export const is_not_falsy: ValueTest<any>;
+    export const is_nil: ValueTest<undefined | null>;
+    export const is_not_nil: ValueTest<any>;
+    export const boolean: ValueTest<boolean>;
+    export const is_boolean: ValueTest<boolean>;
+    export const is_not_boolean: ValueTest<any>;
+    export const number: ValueTest<number>;
+    export const is_number: ValueTest<number>;
+    export const is_not_number: ValueTest<any>;
+    export const string: ValueTest<true>;
+    export const is_string: ValueTest<true>;
+    export const is_not_string: ValueTest<any>;
+    export const is_userdata: ValueTest<any>;
+    export const is_not_userdata: ValueTest<any>;
+    export const is_function: ValueTest<Function>;
+    export const is_not_function: ValueTest<any>;
+    export const is_thread: ValueTest<any>;
+    export const is_not_thread: ValueTest<any>;
+    export const is_table: ValueTest<object>;
+    export const is_not_table: ValueTest<any>;
+    export const True: ValueTest<true>;
+    export const is_true: ValueTest<true>;
+    export const is_not_true: ValueTest<any>;
+    export const False: ValueTest<false>;
+    export const is_false: ValueTest<false>;
+    export const is_not_false: ValueTest<any>;
+    export const equal: BinaryTest<any>;
+    export const equals: BinaryTest<any>;
     /**
      * Deep comparison
      */
-    same: BinaryTest<any>,
-    error: (this: void, func: Function, expectedErrorMessage: string, failureDescription?: string) => void,
-    has_error: (this: void, func: Function, expectedErrorMessage: string, failureDescription?: string) => void,
-    has_no_error: (this: void, func: Function) => void;
-    property: (this: void, object: object, propertyName: string) => void;
-    has_property: (this: void, object: object, propertyName: string) => void;
+    export const same: BinaryTest<any>;
+    export const error: (this: void, func: Function, expectedErrorMessage: string, failureDescription?: string) => void;
+    export const has_error: (this: void, func: Function, expectedErrorMessage: string, failureDescription?: string) => void;
+    export const has_no_error: (this: void, func: Function) => void;
+    export const property: (this: void, object: object, propertyName: string) => void;
+    export const has_property: (this: void, object: object, propertyName: string) => void;
     // Verbs
-    has: Assertion,
-    has_no: Assertion,
-    are: Assertion,
-    are_not: Assertion,
-    is: Assertion,
-    is_not: Assertion
+    export const has: typeof assert;
+    export const has_no: typeof assert;
+    export const are: typeof assert;
+    export const are_not: typeof assert;
+    export const is: typeof assert;
+    export const is_not: typeof assert;
 }
-
-declare const assert: Assertion;
 
 declare const spy: {
     new: (this: void, func: Function) => Function,
