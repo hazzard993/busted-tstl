@@ -6,7 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "lua",
+    "typescript",
+    "busted",
+    "testing"
+  ],
   "author": "",
   "license": "ISC"
 }
