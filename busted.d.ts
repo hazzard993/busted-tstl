@@ -1,3 +1,4 @@
+/** @noSelfInFile */
 declare function describe(description: string, block: () => void): void;
 declare function context(description: string, block: () => void): void;
 declare function insulate(description: string, block: () => void): void;
