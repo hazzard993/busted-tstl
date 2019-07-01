@@ -36,8 +36,10 @@ declare type ValueTest = (this: void, value: any, failureDescription?: string) =
 declare type BinaryTest<T> = (this: void, expected: T, actual: T, failureDescription?: string) => void;
 
 declare namespace assert {
+    export const truthy: ValueTest;
     export const is_truthy: ValueTest;
     export const is_not_truthy: ValueTest;
+    export const falsy: ValueTest;
     export const is_falsy: ValueTest;
     export const is_not_falsy: ValueTest;
     export const is_nil: ValueTest;
@@ -67,6 +69,7 @@ declare namespace assert {
     export const is_not_false: ValueTest;
     export const equal: BinaryTest<any>;
     export const equals: BinaryTest<any>;
+    export const unique: (this: void, ...toCompare: any) => void;
     /**
      * Deep comparison
      */
@@ -83,7 +86,17 @@ declare namespace assert {
     export const are_not: typeof assert;
     export const is: typeof assert;
     export const is_not: typeof assert;
+    // Spy
+    export const spy: (s: typeof spy) => {
+        was: SpyVerb;
+        was_not: SpyVerb;
+    };
 }
+
+type SpyVerb = {
+    called: (this: void) => void;
+    called_with: (this: void, ...parameters: any[]) => void;
+};
 
 declare const spy: {
     new: (this: void, func: Function) => Function,
