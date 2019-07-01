@@ -30,7 +30,11 @@ declare function randomize(disable?: boolean): void;
 
 declare function stub(toStub: any, alias: string): any;
 
-declare function mock(toMock: any): any;
+declare function mock<T>(toMock: T, withStubs?: boolean): T;
+
+declare namespace mock {
+    export function revert(toRevert: object): void;
+}
 
 declare type ValueTest = (this: void, value: any, failureDescription?: string) => void;
 declare type BinaryTest<T> = (this: void, expected: T, actual: T, failureDescription?: string) => void;
@@ -87,18 +91,23 @@ declare namespace assert {
     export const is: typeof assert;
     export const is_not: typeof assert;
     // Spy
-    export const spy: (s: typeof spy) => {
+    export const spy: (s: Function) => {
+        was: SpyVerb;
+        was_not: SpyVerb;
+    };
+    // Stub
+    export const stub: (s: Function) => {
         was: SpyVerb;
         was_not: SpyVerb;
     };
 }
 
 type SpyVerb = {
-    called: (this: void) => void;
+    called: (this: void, numberOfTimes?: number) => void;
     called_with: (this: void, ...parameters: any[]) => void;
 };
 
 declare const spy: {
-    new: (this: void, func: Function) => Function,
+    new: <T extends Function>(this: void, func: T) => T,
     on: (this: void, table: object, methodName: string) => void;
 };
