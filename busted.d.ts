@@ -92,22 +92,78 @@ declare namespace assert {
     export const is_not: typeof assert;
     // Spy
     export const spy: (s: Function) => {
-        was: SpyVerb;
-        was_not: SpyVerb;
+        was: SpyAssertion;
+        was_not: SpyAssertion;
     };
     // Stub
     export const stub: (s: Function) => {
-        was: SpyVerb;
-        was_not: SpyVerb;
+        was: SpyAssertion;
+        was_not: SpyAssertion;
     };
 }
 
-type SpyVerb = {
+type SpyAssertion = {
+    returned_with: (this: void, arguments: any[], level?: number) => void;
+    /**
+     * Checks every time the spied upon function has been called for the specified parameters.
+     */
+    called_with: (this: void, ...arguments: any[]) => void;
+    /**
+     * Whether or not the spied upon function has been called.
+```ts
+assert.spy(mySpy).was.called();     // ✔
+assert.spy(mySpy).was.called;       // ❌
+```
+     * @param numberOfTimes The number of times this function is expected to be called.
+     */
     called: (this: void, numberOfTimes?: number) => void;
-    called_with: (this: void, ...parameters: any[]) => void;
+    called_at_least: SpyAssertion["called"];
+    called_at_most: SpyAssertion["called"];
+    called_more_than: SpyAssertion["called"];
+    called_less_than: SpyAssertion["called"];
 };
 
+type Spy = {
+    /**
+     * Stops spying reverting the target function back to its original state.
+     */
+    revert: (this: void) => void;
+    /**
+     * Clears all records of calls and return values.
+     */
+    clear: (this: void) => void;
+    /**
+     * An array of arrays representing each call.
+     */
+    calls: any[][];
+    returnvals: any[][];
+};
+
+/**
+ * [Source (GitHub)](https://github.com/Olivine-Labs/luassert/blob/3b2351c384cf982b953ab6d7964f835acb8cb7db/src/spy.lua)
+ */
 declare const spy: {
-    new: <T extends Function>(this: void, func: T) => T,
-    on: (this: void, table: object, methodName: string) => void;
+    /**
+     * Shorthand spy constructor. Spies on the specified callable function.
+     * @param callback The function to spy on.
+     * @returns A new callable spy.
+     */
+    <T extends Function>(this: void, callback: T): T & Spy;
+    /**
+     * Spies on the specified callable function.
+     * @param callback The function to spy on.
+     * @returns A new callable spy.
+     */
+    new: <T extends Function>(this: void, callback: T) => T & Spy;
+    /**
+     * Spies on the specified method within the specified table.
+     * @param table The table / object to spy on.
+     * @param methodName The method within the table to spy on.
+     * @returns A new callable spy.
+     */
+    on: <T extends object, K extends keyof T>(this: void, table: T, methodName: K) => T[K] & Spy;
+    /**
+     * Returns whether or not the specified value is a spy.
+     */
+    is_spy: (this: void, value: any) => Function & Spy;
 };
