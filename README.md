@@ -1,6 +1,6 @@
 # TypeScript declarations for Busted
 
-This repository contains TypeScript declarations for [Busted](https://olivinelabs.com/busted/).
+This repository contains TypeScript declarations for [Busted](https://olivinelabs.com/busted/). An Elegant Lua unit testing framework.
 
 You can install these via npm.
 
@@ -18,7 +18,7 @@ link them up in your **tsconfig.json** file.
 }
 ```
 
-and then start creating your busted tests within _.ts_ files.
+start creating your busted tests within _.ts_ files (preferably with the suffix _\_spec.ts_ within a folder named _spec_).
 
 ```ts
 describe("mocks", () => {
@@ -46,6 +46,14 @@ describe("mocks", () => {
         m.thing("Tea"); // DOES print 'Tea'
     });
 });
+```
+
+Then transpile the file(s) with [TypeScriptToLua](https://github.com/TypeScriptToLua/TypeScriptToLua) and run busted!
+
+```sh
+tstl spec/test_spec.ts
+tstl -p tsconfig.json
+busted      # Install with `luarocks install busted`
 ```
 
 It is recommended to use [lua-types](https://github.com/ark120202/lua-types) with these declarations as those will tell TypeScript about Lua's environment.
