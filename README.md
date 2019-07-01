@@ -18,7 +18,7 @@ link them up in your **tsconfig.json** file.
 }
 ```
 
-And then start created your busted tests within _.ts_ files.
+and then start creating your busted tests within _.ts_ files.
 
 ```ts
 describe("mocks", () => {
