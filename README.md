@@ -10,10 +10,16 @@ npm install busted-tstl
 
 link them up in your **tsconfig.json** file.
 
+> It is recommended to use [lua-types](https://github.com/ark120202/lua-types) with these declarations as those will tell TypeScript about Lua's environment.
+
 ```json
 {
     "compilerOptions": {
-        "types": ["busted-tstl"]
+        "lib": ["esnext"],
+        "types": [
+            "busted-tstl",
+            "lua-types/5.1
+        ]
     }
 }
 ```
@@ -55,5 +61,3 @@ tstl spec/test_spec.ts
 tstl -p tsconfig.json
 busted      # Install with `luarocks install busted`
 ```
-
-It is recommended to use [lua-types](https://github.com/ark120202/lua-types) with these declarations as those will tell TypeScript about Lua's environment.
