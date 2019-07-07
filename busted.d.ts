@@ -65,10 +65,10 @@ type SpyAssertion = {
     called_with: (this: void, ...arguments: any[]) => void;
     /**
      * Whether or not the spied upon function has been called.
-```ts
-assert.spy(mySpy).was.called();     // ✔
-assert.spy(mySpy).was.called;       // ❌
-```
+     * ```ts
+     * assert.spy(mySpy).was.called();     // ✔
+     * assert.spy(mySpy).was.called;       // ❌
+     * ```
      * @param numberOfTimes The number of times this function is expected to be called.
      */
     called: (this: void, numberOfTimes?: number) => void;
