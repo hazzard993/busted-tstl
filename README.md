@@ -61,3 +61,24 @@ tstl spec/test_spec.ts
 tstl -p tsconfig.json
 busted      # Install with `luarocks install busted`
 ```
+
+It is recommended to use [lua-types](https://github.com/ark120202/lua-types) with these declarations as those will tell TypeScript about Lua's environment.
+
+## Assertion Statement Info
+
+Assertion statements can be built with underscores and/or dots.
+
+```ts
+assert.is.True(true);           // Equivalent
+assert.is_true(true);           // Equivalent
+
+assert.is.not.True(false);      // Equivalent
+assert.is_not_true(false);      // Equivalent
+```
+
+Verbs can be chained. However if there is a `not` or `no` within the chain, the assertion is expected to be fail. This cannot be reverted with another `not` or `no`.
+
+```ts
+assert.is.is.is.not.is.not.False(true);   // Assertion failed.
+                                          // This was expected because of `not`
+```
