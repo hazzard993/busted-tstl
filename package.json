@@ -2,7 +2,10 @@
   "name": "busted-tstl",
   "version": "0.0.7",
   "description": "TypeScript definitions for the Busted testing suite",
-  "main": "index.js",
+  "files": [
+    "*.d.ts",
+    "assertions/*.d.ts"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
