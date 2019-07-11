@@ -5,7 +5,9 @@ This repository contains TypeScript declarations for [Busted](https://olivinelab
 You can install these via npm.
 
 ```
-npm install busted-tstl
+yarn add -D busted-tstl
+# or
+npm install -D busted-tstl
 ```
 
 link them up in your **tsconfig.json** file.
