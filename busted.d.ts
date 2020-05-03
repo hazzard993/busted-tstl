@@ -39,9 +39,6 @@ declare namespace mock {
 declare type ValueTest = (this: void, value: any, failureDescription?: string) => void;
 declare type BinaryTest<T> = (this: void, expected: T, actual: T, failureDescription?: string) => void;
 
-/**
- * @noSelf
- */
 declare namespace assert {
     export const has_property: (this: void, property: string, table: object) => void;
 
