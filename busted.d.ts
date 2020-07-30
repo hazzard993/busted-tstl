@@ -79,11 +79,11 @@ type Spy = {
     /**
      * Stops spying reverting the target function back to its original state.
      */
-    revert: (this: void) => void;
+    revert: (this: any) => void;
     /**
      * Clears all records of calls and return values.
      */
-    clear: (this: void) => void;
+    clear: (this: any) => void;
     /**
      * An array of arrays representing each call.
      */
