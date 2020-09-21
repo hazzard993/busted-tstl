@@ -22,8 +22,14 @@ declare function strict_teardown(callback: () => void): void;
 declare function lazy_teardown(callback: () => void): void;
 declare function teardown(callback: () => void): void;
 
+/**
+ * Can only be used inside a `pending(...)` call.
+ */
 declare function async(): void;
 
+/**
+ * Can only be used inside a `pending(...)` call.
+ */
 declare function done(): void;
 
 declare function randomize(disable?: boolean): void;
