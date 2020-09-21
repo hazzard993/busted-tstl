@@ -84,3 +84,18 @@ Verbs can be chained. However if there is a `not` or `no` within the chain, the 
 assert.is.is.is.not.is.not.False(true);   // Assertion failed.
                                           // This was expected because of `not`
 ```
+
+## Async Tests
+
+To use `async()` and `done()` make sure your test case is wrapped in a `pending(...)` call.
+
+```ts
+async(); // error, trying to call nil value
+done(); // error, trying to call nil value
+
+pending("waiting for sleep to complete", () => {
+  async();
+  sleep(5000);
+  done();
+});
+```
