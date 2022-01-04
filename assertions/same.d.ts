@@ -1,5 +1,5 @@
 /** @noSelfInFile */
-declare namespace same {
+declare namespace assert {
 
     /**
      * Asserts that two values are the same. Can deeply compare tables.
